@@ -7,7 +7,7 @@ describe('Category', () => {
             name: 'Movie',
             description: 'this is a movie',
             isActive: true,
-            created_at: createdAt
+            createdAt
         }
 
         const category = new Category(props)
@@ -47,5 +47,34 @@ describe('Category', () => {
         expect(category.isActive).toBeFalsy()
         expect(category.createdAt).toBeDefined()
         expect(category.createdAt).toBeInstanceOf(Date)
+    })
+
+    it('should change category when data change', () => {
+        const props = {
+            name: 'Movie',
+            description: 'another movie',
+            isActive: false,
+        }
+
+        const category = new Category(props)
+
+        expect(category).toBeInstanceOf(Category)
+        expect(category.name).toBe('Movie')
+        expect(category.description).toBe(props.description)
+        expect(category.isActive).toBeFalsy()
+        expect(category.createdAt).toBeDefined()
+        expect(category.createdAt).toBeInstanceOf(Date)
+
+        category['name'] = 'new movie'
+        expect(category.name).toBe('new movie')
+
+        category['description'] = 'new description'
+        expect(category.description).toBe('new description')
+
+        category['isActive'] = true
+        expect(category.isActive).toBeTruthy()
+
+        category['isActive'] = null
+        expect(category.isActive).toBeTruthy()
     })
  })
