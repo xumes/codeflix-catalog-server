@@ -1,3 +1,5 @@
+import { MyId } from "../../../shared/data/unique-id";
+
 export type CategoryProps = {
     name: string,
     description?: string,
@@ -6,7 +8,9 @@ export type CategoryProps = {
 }
 
 export class Category {
-    constructor(public readonly props: CategoryProps) {
+    public readonly id: string
+    constructor(public readonly props: CategoryProps, id?: string) {
+        this.id = id || MyId.id()
         this.description = this.props.description;
         this.props.isActive = this.props.isActive ?? true;
         this.props.createdAt = this.props.createdAt ?? new Date();

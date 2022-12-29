@@ -80,4 +80,16 @@ describe('Category', () => {
         category['isActive'] = null
         expect(category.isActive).toBeTruthy()
     })
+
+    it('should use my id when I inform it', () => {
+        const category = new Category({name: 'Movie'}, 'my-own-id')
+        
+        expect(category.id).toBe('my-own-id')
+    })
+
+    it('should create an id on success', () => {
+        const category = new Category({name: 'Movie'})
+        
+        expect(category.id).toBeDefined()
+    })
  })
