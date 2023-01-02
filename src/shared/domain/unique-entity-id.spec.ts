@@ -19,4 +19,14 @@ describe('Unique Entity Id', () => {
         expect(id).toBeDefined()
         expect(validateSpy).toHaveBeenCalled()
     })
+
+    it('should accept an id when a valid id is informed', () => {
+        const validId = UniqueId.id()
+        const validateSpy = jest.spyOn(UniqueEntityId.prototype as any, 'validate')
+
+        const id = new UniqueEntityId(validId)
+
+        expect(id).toBeDefined()
+        expect(validateSpy).toHaveBeenCalled()
+    })
 })
