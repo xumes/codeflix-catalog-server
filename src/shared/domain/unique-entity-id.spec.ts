@@ -12,4 +12,11 @@ describe('Unique Entity Id', () => {
         }).toThrow( new InvalidUniqueIdError())
     })
 
+    it('should create a valid id on success', () => {
+        const validateSpy = jest.spyOn(UniqueEntityId.prototype as any, 'validate')
+        const id = new UniqueEntityId()
+
+        expect(id).toBeDefined()
+        expect(validateSpy).toHaveBeenCalled()
+    })
 })
