@@ -1,3 +1,4 @@
+import { UniqueId } from "../../../shared/data/unique-id"
 import { Category } from "./category"
 
 describe('Category', () => { 
@@ -82,13 +83,20 @@ describe('Category', () => {
     })
 
     it('should use my id when I inform it', () => {
-        const category = new Category({name: 'Movie'}, 'my-own-id')
+        const validId = UniqueId.id()
+        const category = new Category({name: 'Movie'}, validId as any)
         
-        expect(category.id).toBe('my-own-id')
+        expect(category.id).toBe(validId)
     })
 
     it('should create an id on success', () => {
         const category = new Category({name: 'Movie'})
+        
+        expect(category.id).toBeDefined()
+    })
+
+    it('should create an id when I do not provide an id', () => {
+        const category = new Category({name: 'Movie'}, null)
         
         expect(category.id).toBeDefined()
     })
