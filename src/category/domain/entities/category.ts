@@ -22,7 +22,7 @@ export class Category {
 
     private set name(value) {
         this.props.name = value;
-      }
+    }
 
     get description() {
         return this.props.description
