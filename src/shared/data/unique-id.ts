@@ -1,4 +1,3 @@
-import UniqueEntityId from "shared/domain/unique-entity-id"
 import { UUIDAdapter } from "../infra/uuid-adapter"
 
 export interface IUniqueId {

@@ -83,7 +83,7 @@ describe('Category', () => {
     })
 
     it('should use my id when I inform it', () => {
-        const validId = UniqueId.id()
+        const validId = UniqueId.id
         const category = new Category({name: 'Movie'}, validId as any)
         
         expect(category.id).toBe(validId)
