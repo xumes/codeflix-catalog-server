@@ -12,4 +12,40 @@ describe('Value Object', () => {
         valueObjectStub = new ValueObjectStub({ prop1: 'value1' })
         expect(valueObjectStub.value).toStrictEqual({prop1: 'value1'})
     })
+
+    it('Should convert a number to string', () => {
+        const valueObjectStub = new ValueObjectStub(123)
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
+
+    it('Should convert a date to string', () => {
+        const valueObjectStub = new ValueObjectStub(new Date())
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
+
+    it('Should convert an object to string', () => {
+        const valueObjectStub = new ValueObjectStub({ prop1: 'value1' })
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
+
+    it('Should convert null to string', () => {
+        const valueObjectStub = new ValueObjectStub(null)
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
+
+    it('Should convert boolean to string', () => {
+        const valueObjectStub = new ValueObjectStub(true)
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
+
+    it('Should undefined boolean to string', () => {
+        const valueObjectStub = new ValueObjectStub(undefined)
+        const result = valueObjectStub.toString()
+        expect(typeof result).toBe("string")
+    })
 })
