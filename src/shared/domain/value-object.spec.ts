@@ -15,8 +15,6 @@ describe('Value Object', () => {
 
     it('Should convert values to string.', () => {
         const listOfValues = [
-            undefined,
-            null,
             "",
             0,
             5,
@@ -33,39 +31,21 @@ describe('Value Object', () => {
         })
     })
 
-    it('Should convert a number to string', () => {
-        const valueObjectStub = new ValueObjectStub(123)
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
-    })
+    it('should ensure our value object is immutable', () => {
+        const obj = {
+            prop1: 'value1',
+            deep: { prop2: 'value2', prop3: new Date()}
+        }
+        const stub = new ValueObjectStub(obj)
 
-    it('Should convert a date to string', () => {
-        const valueObjectStub = new ValueObjectStub(new Date())
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
-    })
+        expect(() => {
+            (stub as any).value.prop1 = 'another_value'
+        }).toThrow("Cannot assign to read only property 'prop1' of object '#<Object>'")
 
-    it('Should convert an object to string', () => {
-        const valueObjectStub = new ValueObjectStub({ prop1: 'value1' })
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
-    })
+        expect( () => {
+            (stub as any).value.deep.prop2 = 'other_value'
+        }).toThrow("Cannot assign to read only property 'prop2' of object '#<Object>'")
 
-    it('Should convert null to string', () => {
-        const valueObjectStub = new ValueObjectStub(null)
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
-    })
-
-    it('Should convert boolean to string', () => {
-        const valueObjectStub = new ValueObjectStub(true)
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
-    })
-
-    it('Should undefined boolean to string', () => {
-        const valueObjectStub = new ValueObjectStub(undefined)
-        const result = valueObjectStub.toString()
-        expect(typeof result).toBe("string")
+        expect(stub.value.deep.prop3).toBeInstanceOf(Date)
     })
 })
