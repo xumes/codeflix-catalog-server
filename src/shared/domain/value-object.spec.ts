@@ -13,6 +13,26 @@ describe('Value Object', () => {
         expect(valueObjectStub.value).toStrictEqual({prop1: 'value1'})
     })
 
+    it('Should convert values to string.', () => {
+        const listOfValues = [
+            undefined,
+            null,
+            "",
+            0,
+            5,
+            true,
+            false,
+            new Date(),
+            { prop1: 'value1'}
+        ]
+
+        listOfValues.forEach(item => {
+            let valueObjectStub = new ValueObjectStub(item)
+            let result = valueObjectStub.toString()
+            expect(typeof result).toBe("string")
+        })
+    })
+
     it('Should convert a number to string', () => {
         const valueObjectStub = new ValueObjectStub(123)
         const result = valueObjectStub.toString()
