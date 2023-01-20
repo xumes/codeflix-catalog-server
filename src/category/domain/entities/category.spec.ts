@@ -100,4 +100,12 @@ describe('Category', () => {
         
         expect(category.id).toBeDefined()
     })
+
+    it('should update a category on success', () => {
+        const category = new Category({name: 'Movie'})
+        category.update( 'new name', 'new description')
+
+        expect(category.name).toBe('new name')
+        expect(category.description).toBe('new description')
+    })
  })
