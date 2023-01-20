@@ -86,7 +86,7 @@ describe('Category', () => {
         const validId = UniqueId.id()
         const category = new Category({name: 'Movie'}, validId as any)
         
-        expect(category.id).toBe(validId)
+        expect(category.uniqueEntityId).toBe(validId)
     })
 
     it('should create an id on success', () => {
