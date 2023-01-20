@@ -43,4 +43,9 @@ export class Category extends Entity<CategoryProps> {
     get createdAt(){
         return this.props.createdAt
     }
+
+    update(name: string, description: string): void {
+        this.name = name
+        this.description = description
+    }
 }
